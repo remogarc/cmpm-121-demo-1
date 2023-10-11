@@ -38,9 +38,9 @@ function pumpkinstr() {
 let countGrw = 0;
 requestAnimationFrame(contGrowth);
 function contGrowth() {
-  countGrw += (1/60);
-  if (countGrw >= 1){
-    count ++;
+  countGrw += 1 / 60;
+  if (countGrw >= 1) {
+    count++;
     console.log(countGrw);
     console.log(count);
     pumpkincount.textContent = pumpkinstr();
