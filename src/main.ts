@@ -2,7 +2,7 @@ import "./style.css";
 
 const app: HTMLDivElement = document.querySelector("#app")!;
 
-const gameName = "Reese Pumpkin Farm Game";
+const gameName = "Pumpkin Farm Game";
 
 document.title = gameName;
 
@@ -10,13 +10,26 @@ const header = document.createElement("h1");
 header.innerHTML = gameName;
 app.append(header);
 
-function setupCounter(element: HTMLButtonElement) {
-  let counter = 0;
-  const setCounter = (count: number) => {
-    counter = count;
-    element.innerHTML = `🎃 ${counter} Pumpkins`;
-  };
-  element.addEventListener("click", () => setCounter(counter + 1));
-  setCounter(0);
+let count: number = 0;
+
+const mainbutton = document.createElement("button");
+mainbutton.type = "button"
+mainbutton.textContent = `🎃`;
+mainbutton.addEventListener("click", setCounter);
+
+const pumpkincount: HTMLDivElement = document.createElement("div");
+pumpkincount.textContent = pumpkinstr();
+
+app.append(mainbutton);
+app.append(pumpkincount);
+
+function setCounter() {
+  count ++;
+  pumpkincount.textContent = pumpkinstr();
+};
+
+function pumpkinstr(): string{
+  return ` Pumpkins: ${count}`;
 }
-setupCounter(document.querySelector<HTMLButtonElement>("#counter")!);
+
+setInterval(setCounter,1000);
