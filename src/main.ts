@@ -13,7 +13,7 @@ app.append(header);
 let count: number = 0;
 
 const mainbutton = document.createElement("button");
-mainbutton.type = "button"
+mainbutton.type = "button";
 mainbutton.textContent = `🎃`;
 mainbutton.addEventListener("click", setCounter);
 
@@ -24,12 +24,12 @@ app.append(mainbutton);
 app.append(pumpkincount);
 
 function setCounter() {
-  count ++;
+  count++;
   pumpkincount.textContent = pumpkinstr();
-};
+}
 
-function pumpkinstr(): string{
+function pumpkinstr(): string {
   return ` Pumpkins: ${count}`;
 }
 
-setInterval(setCounter,1000);
+setInterval(setCounter, 1000);
