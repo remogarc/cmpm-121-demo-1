@@ -2,7 +2,7 @@ import "./style.css";
 
 const app: HTMLDivElement = document.querySelector("#app")!;
 
-const gameName = "Reese's Small Change to Verify: The Game";
+const gameName = "Reese Pumpkin Farm Game";
 
 document.title = gameName;
 
