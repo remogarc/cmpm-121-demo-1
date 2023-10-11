@@ -31,20 +31,20 @@ function setCounter() {
 }
 
 function pumpkinstr() {
-  return `Pumpkins: ${count}`;
+  return `Pumpkins: ${count.toFixed(0)}`;
 }
 
-// setInterval(setCounter, 1000);
-let countGrw = 0;
-requestAnimationFrame(contGrowth);
-function contGrowth() {
-  countGrw += 1 / 60;
-  if (countGrw >= 1) {
-    count++;
-    console.log(countGrw);
-    console.log(count);
-    pumpkincount.textContent = pumpkinstr();
-    countGrw = 0;
+let previousTimeStamp = 0;
+
+requestAnimationFrame(step);
+function step(timeStamp: number) {
+  if (!previousTimeStamp) {
+    previousTimeStamp = timeStamp;
   }
-  requestAnimationFrame(contGrowth);
+
+  const elapsed = (timeStamp - previousTimeStamp) / 1000;
+  count += elapsed;
+  pumpkincount.textContent = pumpkinstr();
+  previousTimeStamp = timeStamp;
+  requestAnimationFrame(step);
 }
