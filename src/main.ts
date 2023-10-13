@@ -15,6 +15,9 @@ let growth_rate = 0;
 let up1count = 0;
 let up2count = 0;
 let up3count = 0;
+let up1cost = 10;
+let up2cost = 100;
+let up3cost = 1000;
 
 const mainbutton = document.createElement("button");
 mainbutton.type = "button";
@@ -24,44 +27,34 @@ mainbutton.addEventListener("click", setCounter);
 
 const upgrade1 = document.createElement("button");
 upgrade1.type = "button";
-upgrade1.textContent = `Fertilizer: 10 Pumpkins`;
-upgrade1.style.fontSize = "15px";
+upgrade1.textContent = `Fertilizer: ${up1cost.toFixed(
+  2,
+)} Pumpkins (${up1count})`;
+upgrade1.style.fontSize = "17px";
 upgrade1.disabled = true;
 upgrade1.addEventListener("click", upgrd1Ctr);
 
 const upgrade2 = document.createElement("button");
 upgrade2.type = "button";
-upgrade2.textContent = `Tractor: 100 Pumpkins`;
-upgrade2.style.fontSize = "15px";
+upgrade2.textContent = `Tractor: ${up2cost.toFixed(2)} Pumpkins (${up2count})`;
+upgrade2.style.fontSize = "17px";
 upgrade2.disabled = true;
 upgrade2.addEventListener("click", upgrd2Ctr);
 
 const upgrade3 = document.createElement("button");
 upgrade3.type = "button";
-upgrade3.textContent = `Acre: 1000 Pumpkins`;
-upgrade3.style.fontSize = "15px";
+upgrade3.textContent = `Acre: ${up3cost.toFixed(2)} Pumpkins (${up3count})`;
+upgrade3.style.fontSize = "17px";
 upgrade3.disabled = true;
 upgrade3.addEventListener("click", upgrd3Ctr);
 
 const pumpkincount: HTMLDivElement = document.createElement("div");
 pumpkincount.textContent = pumpkinstr();
-pumpkincount.style.fontSize = "20px";
+pumpkincount.style.fontSize = "22px";
 
 const growthcount: HTMLDivElement = document.createElement("div");
 growthcount.textContent = growthstr();
-growthcount.style.fontSize = "12px";
-
-const up1: HTMLDivElement = document.createElement("div");
-up1.textContent = up1str();
-up1.style.fontSize = "12px";
-
-const up2: HTMLDivElement = document.createElement("div");
-up2.textContent = up2str();
-up2.style.fontSize = "12px";
-
-const up3: HTMLDivElement = document.createElement("div");
-up3.textContent = up3str();
-up3.style.fontSize = "12px";
+growthcount.style.fontSize = "13px";
 
 app.append(pumpkincount);
 app.append(mainbutton);
@@ -69,9 +62,6 @@ app.append(growthcount);
 app.append(upgrade1);
 app.append(upgrade2);
 app.append(upgrade3);
-app.append(up1);
-app.append(up2);
-app.append(up3);
 
 function setCounter() {
   count++;
@@ -85,48 +75,55 @@ function growthstr() {
   return `Growth Rate: ${growth_rate.toFixed(1)}`;
 }
 function up1str() {
-  return `Fertilizer: ${up1count}`;
+  return `Fertilizer: ${up1cost.toFixed(2)} Pumpkins (${up1count})`;
 }
 function up2str() {
-  return `Tractors: ${up2count}`;
+  return `Tractor: ${up2cost.toFixed(2)} Pumpkins (${up2count})`;
 }
 function up3str() {
-  return `Acres: ${up3count}`;
+  return `Acre: ${up3cost.toFixed(2)} Pumpkins (${up3count})`;
 }
 
 setInterval(() => {
-  if (count >= 1000) {
-    upgrade3.disabled = false;
-  } else if (count >= 100) {
-    upgrade2.disabled = false;
-  } else if (count >= 10) {
+  if (count >= up1cost) {
     upgrade1.disabled = false;
   } else {
     upgrade1.disabled = true;
+  }
+  if (count >= up2cost) {
+    upgrade2.disabled = false;
+  } else {
     upgrade2.disabled = true;
+  }
+  if (count >= up3cost) {
+    upgrade3.disabled = false;
+  } else {
     upgrade3.disabled = true;
   }
 });
 
 function upgrd1Ctr() {
-  count -= 10;
+  count -= up1cost;
+  up1cost = up1cost * 1.15;
   growth_rate += 0.1;
   up1count++;
-  up1.textContent = up1str();
+  upgrade1.textContent = up1str();
   growthcount.textContent = growthstr();
 }
 function upgrd2Ctr() {
-  count -= 100;
+  count -= up2cost;
+  up2cost = up2cost * 1.15;
   growth_rate += 2;
   up2count++;
-  up2.textContent = up2str();
+  upgrade2.textContent = up2str();
   growthcount.textContent = growthstr();
 }
 function upgrd3Ctr() {
-  count -= 1000;
+  count -= up3cost;
+  up3cost = up3cost * 1.15;
   growth_rate += 50;
   up3count++;
-  up3.textContent = up3str();
+  upgrade3.textContent = up3str();
   growthcount.textContent = growthstr();
 }
 
