@@ -2,7 +2,7 @@ import "./style.css";
 
 const app: HTMLDivElement = document.querySelector("#app")!;
 
-const gameName = "Pumpkin Farm";
+const gameName = "🍂 Pumpkin Farm 🍂";
 
 document.title = gameName;
 
@@ -22,12 +22,12 @@ let up3cost = 1000;
 const mainbutton = document.createElement("button");
 mainbutton.type = "button";
 mainbutton.textContent = `🎃`;
-mainbutton.style.fontSize = "30px";
+mainbutton.style.fontSize = "70px";
 mainbutton.addEventListener("click", setCounter);
 
 const upgrade1 = document.createElement("button");
 upgrade1.type = "button";
-upgrade1.textContent = `Fertilizer: ${up1cost.toFixed(
+upgrade1.textContent = `🌱 Fertilizer: ${up1cost.toFixed(
   2,
 )} Pumpkins (${up1count})`;
 upgrade1.style.fontSize = "17px";
@@ -36,25 +36,29 @@ upgrade1.addEventListener("click", upgrd1Ctr);
 
 const upgrade2 = document.createElement("button");
 upgrade2.type = "button";
-upgrade2.textContent = `Tractor: ${up2cost.toFixed(2)} Pumpkins (${up2count})`;
+upgrade2.textContent = `🚜 Tractor: ${up2cost.toFixed(
+  2,
+)} Pumpkins (${up2count})`;
 upgrade2.style.fontSize = "17px";
 upgrade2.disabled = true;
 upgrade2.addEventListener("click", upgrd2Ctr);
 
 const upgrade3 = document.createElement("button");
 upgrade3.type = "button";
-upgrade3.textContent = `Acre: ${up3cost.toFixed(2)} Pumpkins (${up3count})`;
+upgrade3.textContent = `👨‍🌾 Acre: ${up3cost.toFixed(2)} Pumpkins (${up3count})`;
 upgrade3.style.fontSize = "17px";
 upgrade3.disabled = true;
 upgrade3.addEventListener("click", upgrd3Ctr);
 
 const pumpkincount: HTMLDivElement = document.createElement("div");
 pumpkincount.textContent = pumpkinstr();
+pumpkincount.style.lineHeight = "2.2";
 pumpkincount.style.fontSize = "22px";
 
 const growthcount: HTMLDivElement = document.createElement("div");
 growthcount.textContent = growthstr();
-growthcount.style.fontSize = "13px";
+growthcount.style.lineHeight = "2.2";
+growthcount.style.fontSize = "15px";
 
 app.append(pumpkincount);
 app.append(mainbutton);
@@ -75,13 +79,13 @@ function growthstr() {
   return `Growth Rate: ${growth_rate.toFixed(1)}`;
 }
 function up1str() {
-  return `Fertilizer: ${up1cost.toFixed(2)} Pumpkins (${up1count})`;
+  return `🌱 Fertilizer: ${up1cost.toFixed(2)} Pumpkins (${up1count})`;
 }
 function up2str() {
-  return `Tractor: ${up2cost.toFixed(2)} Pumpkins (${up2count})`;
+  return `🚜 Tractor: ${up2cost.toFixed(2)} Pumpkins (${up2count})`;
 }
 function up3str() {
-  return `Acre: ${up3cost.toFixed(2)} Pumpkins (${up3count})`;
+  return `👨‍🌾 Acre: ${up3cost.toFixed(2)} Pumpkins (${up3count})`;
 }
 
 setInterval(() => {
