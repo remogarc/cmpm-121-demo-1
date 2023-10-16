@@ -12,7 +12,7 @@ header.style.letterSpacing = "1.5px";
 header.innerHTML = gameName;
 app.append(header);
 
-let count = 100000;
+let count = 0;
 let growth_rate = 0;
 
 interface Item {
